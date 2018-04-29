@@ -10,6 +10,11 @@ bool Animal::isAdult()
 	return adult;
 }
 
+void Animal::setAdult()
+{
+	isAdult = true;
+}
+
 void Animal::getOlder()
 {
 	age++;

@@ -2,7 +2,19 @@
 
 void Zoo::randomEvent()
 {
-
+	int random = rand() % 4 + 1;
+	
+	switch (random) 
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	}
 }
 
 void Zoo::sickness()
@@ -25,9 +37,7 @@ void Zoo::birth()
 
 		int birthChoice = (rand() % 3) + 1;
 		bool birthable = false;
-		Animal** tempArr;
 		
-
 		switch (birthChoice) 
 		{
 		
@@ -39,21 +49,7 @@ void Zoo::birth()
 				//double array size if the new tiger will go beyond the array
 				if (tigerCount + 1 >= tigerCap)
 				{
-					tigerCount *= 2;
-					tempArr = new Animal*[tigerCount];
-
-					for (int i = 0; i < tigerCap; i++)
-					{
-						tempArr[i] = new Animal(*arr[i]);
-					}
-
-					for (int i = 0; i < tigerCount; i++)
-					{
-						delete tigerArr[i];
-					}
-					delete[]tigerArr;
-
-					arr = tempArr;
+					expandTiger();
 				}
 
 				tigerArr[tigerCount] = new Tiger();
@@ -64,16 +60,23 @@ void Zoo::birth()
 		//Penguin
 		case 2:
 			
-			if (penguinCount + 5 >= penguinCap)
+			if (birthable == true)
 			{
-				expandArr(penArr, penguinCap, penguinCount);
+				//double array size if the new tiger will go beyond the array
+				if (penguinCount + 5 >= penguinCap)
+				{
+					expandPenguin();
+				}
+				for (int i = penguinCount; i < (penguinCount + 5); i++) 
+				{
+					penArr[i] = new Penguin();
+				}
 			}
-			
-			for (int i = penguinCount; i < penguinCount + 5; i++)
+					
+			for (int i = penguinCount; i < (penguinCount + 5); i++)
 			{
 				penArr[i] = new Penguin();
 			}
-			
 			penguinCount += 5;
 			
 
@@ -81,20 +84,45 @@ void Zoo::birth()
 		case 3:
 			if (turtleCount + 10 >= turtleCap)
 			{
-				expandArr(turtleArr, turtleCap, penguinCount);
+				expandTurtle();
 			}
-			for (int i = turtleCount; i < turtleCount + 10; i++)
+			for (int i = turtleCount; i < (turtleCount + 10); i++)
 			{
 				turtleArr[i] = new Turtle();
 			}
-			turtleCount += 10;
-			
+			turtleCount += 10;			
 		}
 	}
 }
 
 void Zoo::checkAdult()
 {
+	for (int i = 0; i < tigerCount; i++) 
+	{
+		if (tigerArr[i]->getAge() >= 3)
+		{
+			tigerArr[i]->setAdult();
+		}
+	}
+
+	for (int i = 0; i < penguinCount; i++)
+	{
+		if (penArr[i]->getAge() >= 3)
+		{
+			penArr[i]->setAdult();
+		}
+	}
+	
+	for (int i = 0; i < turtleCount; i++) 
+	{
+		if (turtleArr[i]->getAge() >= 3)
+		{
+			turtleArr[i]->setAdult();
+		}
+
+	}
+
+	
 }
 
 void Zoo::feed()
@@ -107,21 +135,51 @@ void Zoo::buyAnimal(Animal ** arr)
 
 }
 
-void Zoo::expandArr(Animal ** arr, int& cap, int numAnimals)
+void Zoo::expandTiger()
 {
-	cap = cap * 2;
-	Animal** tempArr = new Animal*[cap];
+	tigerCap *= 2;
+	Animal** tempArr = new Animal*[tigerCap];
 
-	for (int i = 0; i < numAnimals; i++) 
+	for (int i = 0; i < tigerCount; i++)
 	{
-		tempArr[i] = new Animal(*arr[i]);
+		tempArr[i] = new Animal(*tigerArr[i]);
 	}
 
-	for (int i = 0; i < numAnimals; i++)
+	for (int i = 0; i < tigerCount; i++)
 	{
-		delete arr[i];
+		delete tigerArr[i];
 	}
-	delete[]arr;
+	delete[]tigerArr;
 
-	arr = tempArr;
+	tigerArr = tempArr;
+}
+
+void Zoo::expandTurtle()
+{
+	turtleCap *= 2;
+	Animal** tempArr = new Animal*[turtleCap];
+
+	for (int i = 0; i < penguinCount; i++)
+	{
+		tempArr[i] = new Animal(*penArr[i]);
+	}
+}
+
+void Zoo::expandPenguin()
+{
+	penguinCap *= 2;
+	Animal** tempArr = new Animal*[penguinCap];
+
+	for (int i = 0; i < penguinCount; i++)
+	{
+		tempArr[i] = new Animal(*penArr[i]);
+	}
+
+	for (int i = 0; i < tigerCount; i++)
+	{
+		delete penArr[i];
+	}
+	delete[]penArr;
+
+	penArr = tempArr;
 }

@@ -22,7 +22,8 @@ public:
 	void birth();
 	void checkAdult();
 	void feed();
-	void buyAnimal(Animal** arr);								
+	void expandTiger();
+	void expandTurtle();
+	void expandPenguin();
 	
-
 };
