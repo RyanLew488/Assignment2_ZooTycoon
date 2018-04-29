@@ -115,12 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="helperFunctions.cpp" />
     <ClCompile Include="Tiger.cpp" />
     <ClCompile Include="Zoo.cpp" />
     <ClCompile Include="ZooMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.hpp" />
+    <ClInclude Include="helperFunctions.hpp" />
     <ClInclude Include="Penguin.hpp" />
     <ClInclude Include="Tiger.hpp" />
     <ClInclude Include="Turtle.hpp" />

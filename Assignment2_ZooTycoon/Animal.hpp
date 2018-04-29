@@ -1,4 +1,5 @@
 #pragma once
+#include "helperFunctions.hpp"
 class Animal {
 
 protected:
@@ -12,6 +13,10 @@ protected:
 public:
 	virtual void birth() = 0;
 	virtual void sickness() = 0;
-	int getFeedCost();
-	int getPayOff();
+	virtual int getFeedCost() = 0;
+	virtual int getPayOff() = 0;
+	int getAge();
+	bool isAdult();
+	void getOlder();
+
 };
