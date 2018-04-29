@@ -4,5 +4,5 @@
 
 int main()
 {
-
+	std::cout << "Please buy your initial animals" << std::endl;
 }

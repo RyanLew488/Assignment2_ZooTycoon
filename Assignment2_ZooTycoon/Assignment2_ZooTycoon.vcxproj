@@ -117,7 +117,9 @@
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="helperFunctions.cpp" />
+    <ClCompile Include="Penguin.cpp" />
     <ClCompile Include="Tiger.cpp" />
+    <ClCompile Include="Turtle.cpp" />
     <ClCompile Include="Zoo.cpp" />
     <ClCompile Include="ZooMain.cpp" />
   </ItemGroup>

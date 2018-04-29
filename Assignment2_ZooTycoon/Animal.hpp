@@ -12,9 +12,6 @@ protected:
 
 public:
 	Animal();
-	Animal(int age);
-	virtual void birth() = 0;
-	virtual void sickness() = 0;
 	virtual int getFeedCost() = 0;
 	virtual int getPayOff() = 0;
 	int getAge();

@@ -8,10 +8,16 @@ void Zoo::randomEvent()
 	{
 	case 1:
 		break;
+
+	//boom
 	case 2:
 		break;
+
+	//sickness occurs
 	case 3:
 		break;
+
+	//nothing happens in case 4
 	case 4:
 		break;
 	}
@@ -19,7 +25,47 @@ void Zoo::randomEvent()
 
 void Zoo::sickness()
 {
+	if (tigerCount == 0 && penguinCount == 0 && turtleCount == 0) 
+	{
+		std::cout << "You have no animals, no animal got sick \n";
+		return;
+	}
+	else
+	{
+		int sick = (rand() % 3 + 1);
+		bool sickOccured = false;
+		
+		while (!sickOccured)
+		{
+			switch (sick)
+			{
+			
+			
+			case 1:
+				if (tigerCount > 0) 
+				{
+					tigerCount--;
+					sickOccured = true;
+				}
+				break;
+			case 2:
+				if (penguinCount > 0)
+				{
+					penguinCount--;
+					sickOccured = true;
+				}
+				break;
 
+			case 3:
+				if (turtleCount > 0)
+				{
+					turtleCount--;
+					sickOccured = true;
+				}
+				break;
+			}
+		}
+	}
 }
 
 void Zoo::boom()
@@ -37,6 +83,12 @@ void Zoo::birth()
 
 		int birthChoice = (rand() % 3) + 1;
 		bool birthable = false;
+
+		if (tigerCount == 0 && turtleCount == 0 && penguinCount == 0) 
+		{
+			std::cout << "You have no animals, no birth occured \n";
+			return;
+		}
 		
 		switch (birthChoice) 
 		{
@@ -44,7 +96,11 @@ void Zoo::birth()
 		//Tiger
 		case 1:
 			
-			if (birthable == true)
+			if (tigerCount == 0)
+			{
+				birthOccured = false;
+			}
+			else if (birthable == true)
 			{
 				//double array size if the new tiger will go beyond the array
 				if (tigerCount + 1 >= tigerCap)
@@ -54,43 +110,55 @@ void Zoo::birth()
 
 				tigerArr[tigerCount] = new Tiger();
 				tigerCount++;
+				birthOccured = true;
+				break;
 			}
-			break;
-
+			
 		//Penguin
 		case 2:
 			
-			if (birthable == true)
+			if (penguinCount == 0)
+			{
+				birthOccured = false;
+			}
+			else if (birthable == true)
 			{
 				//double array size if the new tiger will go beyond the array
 				if (penguinCount + 5 >= penguinCap)
 				{
 					expandPenguin();
 				}
-				for (int i = penguinCount; i < (penguinCount + 5); i++) 
+				
+				for (int i = penguinCount; i < (penguinCount + 5); i++)
 				{
 					penArr[i] = new Penguin();
 				}
+				
+				penguinCount += 5;
+				birthOccured = true;
+				break;
 			}
-					
-			for (int i = penguinCount; i < (penguinCount + 5); i++)
-			{
-				penArr[i] = new Penguin();
-			}
-			penguinCount += 5;
 			
-
 		//Turtles
 		case 3:
-			if (turtleCount + 10 >= turtleCap)
+			if (turtleCount == 0)
+			{
+				birthOccured = false;
+			}
+
+			else if (turtleCount + 10 >= turtleCap)
 			{
 				expandTurtle();
 			}
+
 			for (int i = turtleCount; i < (turtleCount + 10); i++)
 			{
 				turtleArr[i] = new Turtle();
 			}
-			turtleCount += 10;			
+
+			turtleCount += 10;
+			birthOccured = true;
+			break;
 		}
 	}
 }
@@ -127,13 +195,27 @@ void Zoo::checkAdult()
 
 void Zoo::feed()
 {
+
 }
 
-void Zoo::buyAnimal(Animal ** arr)
+void Zoo::addTiger()
 {
-	std::cout << "Please select what animal you would like to purchase" << std::endl;
-
+	tigerArr[tigerCount] = new Tiger(1);
+	tigerCount++;
 }
+
+void Zoo::addTurtle()
+{
+	turtleArr[turtleCount] = new Turtle(1);
+	turtleCount++;
+}
+
+void Zoo::addPenguin()
+{
+	penArr[penguinCount] = new Penguin(1);
+	penguinCount++;
+}
+
 
 void Zoo::expandTiger()
 {
@@ -142,7 +224,7 @@ void Zoo::expandTiger()
 
 	for (int i = 0; i < tigerCount; i++)
 	{
-		tempArr[i] = new Animal(*tigerArr[i]);
+		tempArr[i] = tigerArr[i];
 	}
 
 	for (int i = 0; i < tigerCount; i++)
@@ -161,7 +243,7 @@ void Zoo::expandTurtle()
 
 	for (int i = 0; i < penguinCount; i++)
 	{
-		tempArr[i] = new Animal(*penArr[i]);
+		tempArr[i] = turtleArr[i];
 	}
 }
 
@@ -172,7 +254,7 @@ void Zoo::expandPenguin()
 
 	for (int i = 0; i < penguinCount; i++)
 	{
-		tempArr[i] = new Animal(*penArr[i]);
+		tempArr[i] = penArr[i];
 	}
 
 	for (int i = 0; i < tigerCount; i++)

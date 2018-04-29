@@ -22,6 +22,9 @@ public:
 	void birth();
 	void checkAdult();
 	void feed();
+	void addTiger();
+	void addTurtle();
+	void addPenguin();
 	void expandTiger();
 	void expandTurtle();
 	void expandPenguin();
