@@ -25,6 +25,7 @@ void Zoo::birth()
 
 		int birthChoice = (rand() % 3) + 1;
 		bool birthable = false;
+		Animal** tempArr;
 		
 
 		switch (birthChoice) 
@@ -35,9 +36,24 @@ void Zoo::birth()
 			
 			if (birthable == true)
 			{
+				//double array size if the new tiger will go beyond the array
 				if (tigerCount + 1 >= tigerCap)
 				{
-					expandArr(tigerArr, tigerCap, tigerCount);
+					tigerCount *= 2;
+					tempArr = new Animal*[tigerCount];
+
+					for (int i = 0; i < tigerCap; i++)
+					{
+						tempArr[i] = new Animal(*arr[i]);
+					}
+
+					for (int i = 0; i < tigerCount; i++)
+					{
+						delete tigerArr[i];
+					}
+					delete[]tigerArr;
+
+					arr = tempArr;
 				}
 
 				tigerArr[tigerCount] = new Tiger();

@@ -23,6 +23,6 @@ public:
 	void checkAdult();
 	void feed();
 	void buyAnimal(Animal** arr);								
-	void expandArr(Animal** arr, int& cap, int numAnimals);
+	
 
 };
