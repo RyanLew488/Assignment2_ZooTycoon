@@ -8,7 +8,7 @@ int main()
 {
 	srand(time(0));
 	Zoo playerZoo;
-	
+	playerZoo.setBank(10000000);
 	std::cout << "Please buy your initial animals to start your Zoo" << std::endl;
 
 	std::cout << "Would you like to buy one or two tigers? ";
@@ -56,6 +56,18 @@ int main()
 			std::cout << "Please select which animal you would like: " << std::endl;
 			std::cout << "1: Tiger | Price: 10000\n2: Penguin | Price: 1000\n3: Turtle | Price: 100\n";
 			int buyChoice = iRangeValid("", 1, 3);
+			switch (buyChoice)
+			{
+			case 1:
+				playerZoo.buyTiger();
+				break;
+			case 2:
+				playerZoo.buyPenguin();
+				break;
+			case 3:
+				playerZoo.buyTurtle();
+				break;
+			}
 
 		}
 
