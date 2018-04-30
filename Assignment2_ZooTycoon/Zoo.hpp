@@ -16,15 +16,18 @@ private:
 	Animal** penArr;
 
 public:
+	Zoo();
+	void setBank(int amount);
+	int getBank();
 	void randomEvent();
 	void sickness();
 	void boom();
 	void birth();
 	void checkAdult();
 	void feed();
-	void addTiger();
-	void addTurtle();
-	void addPenguin();
+	void buyTiger();
+	void buyTurtle();
+	void buyPenguin();
 	void expandTiger();
 	void expandTurtle();
 	void expandPenguin();

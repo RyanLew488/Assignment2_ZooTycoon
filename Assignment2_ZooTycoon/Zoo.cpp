@@ -1,5 +1,29 @@
 #include "Zoo.hpp"
 
+Zoo::Zoo()
+{
+	bank = 100000;
+	tigerCap = 10;
+	turtleCap = 10;
+	penguinCap = 10;
+	tigerCount = 0;
+	penguinCount = 0;
+	turtleCount = 0;
+	tigerArr = new Animal*[10];
+	penArr = new Animal*[10];
+	turtleArr = new Animal*[10];
+}
+
+void Zoo::setBank(int amount)
+{
+	bank = amount;
+}
+
+int Zoo::getBank()
+{
+	return bank;
+}
+
 void Zoo::randomEvent()
 {
 	int random = rand() % 4 + 1;
@@ -7,14 +31,17 @@ void Zoo::randomEvent()
 	switch (random) 
 	{
 	case 1:
+		birth();
 		break;
 
 	//boom
 	case 2:
+		boom();
 		break;
 
 	//sickness occurs
 	case 3:
+		sickness();
 		break;
 
 	//nothing happens in case 4
@@ -92,7 +119,7 @@ void Zoo::birth()
 		
 		switch (birthChoice) 
 		{
-		
+
 		//Tiger
 		case 1:
 			
@@ -195,27 +222,52 @@ void Zoo::checkAdult()
 
 void Zoo::feed()
 {
+	for (int i = 0; i < tigerCount; i++)
+	{
+		bank -= tigerArr[i]->getFeedCost();
+	}
 
+	for (int i = 0; i < penguinCount; i++)
+	{
+		bank -= penArr[i]->getFeedCost();
+	}
+
+	for (int i = 0; i < turtleCount; i++)
+	{
+		bank -= turtleArr[i]->getFeedCost();
+	}
+	std::cout << "Your bank account after feeding: $" << getBank();
 }
 
-void Zoo::addTiger()
+void Zoo::buyTiger()
 {
+	if (tigerCount == tigerCap)
+	{
+		expandTiger();
+	}
 	tigerArr[tigerCount] = new Tiger(1);
 	tigerCount++;
 }
 
-void Zoo::addTurtle()
+void Zoo::buyTurtle()
 {
+	if (turtleCount == turtleCap)
+	{
+		expandTiger();
+	}
 	turtleArr[turtleCount] = new Turtle(1);
 	turtleCount++;
 }
 
-void Zoo::addPenguin()
+void Zoo::buyPenguin()
 {
+	if (penguinCount == penguinCap)
+	{
+		expandTiger();
+	}
 	penArr[penguinCount] = new Penguin(1);
 	penguinCount++;
 }
-
 
 void Zoo::expandTiger()
 {
