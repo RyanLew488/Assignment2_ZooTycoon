@@ -84,8 +84,6 @@ bool yesNoValidation() {
 	bool valid = false;
 	std::string input;
 
-	std::cout << "Would you like to play a game of Dice War?" << std::endl;
-
 	do {
 	
  		std::cin >> input;

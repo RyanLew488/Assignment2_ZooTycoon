@@ -245,6 +245,8 @@ void Zoo::buyTiger()
 	tigerArr[tigerCount] = new Tiger(1);
 	bank -= tigerArr[tigerCount]->getCost();
 	tigerCount++;
+
+	std::cout << "tigerCap = " << tigerCap << std::endl;
 }
 
 void Zoo::buyTurtle()
