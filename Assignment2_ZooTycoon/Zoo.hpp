@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Tiger.hpp"
+#include "Tiger.hpp" //Includes Animal.hpp
 #include "Turtle.hpp"
 #include "Penguin.hpp"
 
@@ -31,5 +31,6 @@ public:
 	void expandTiger();
 	void expandTurtle();
 	void expandPenguin();
+	void ageZoo();
 	
 };

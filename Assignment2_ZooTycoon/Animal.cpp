@@ -8,6 +8,10 @@ Animal::Animal()
 	payOff = 1000;
 	adult = true;
 }
+int Animal::getCost()
+{
+	return cost;
+}
 int Animal::getAge()
 {
 	return age;

@@ -214,10 +214,7 @@ void Zoo::checkAdult()
 		{
 			turtleArr[i]->setAdult();
 		}
-
 	}
-
-	
 }
 
 void Zoo::feed()
@@ -246,6 +243,7 @@ void Zoo::buyTiger()
 		expandTiger();
 	}
 	tigerArr[tigerCount] = new Tiger(1);
+	bank -= tigerArr[tigerCount]->getCost();
 	tigerCount++;
 }
 
@@ -316,4 +314,22 @@ void Zoo::expandPenguin()
 	delete[]penArr;
 
 	penArr = tempArr;
+}
+
+void Zoo::ageZoo()
+{
+	for (int i = 0; i < tigerCount; i++)
+	{
+		tigerArr[i]->getOlder();
+	}
+
+	for (int i = 0; i < penguinCount; i++)
+	{
+		penArr[i]->getOlder();
+	}
+
+	for (int i = 0; i < turtleCount; i++)
+	{
+		turtleArr[i]->getOlder();
+	}
 }

@@ -14,7 +14,8 @@ public:
 	Animal();
 	virtual int getFeedCost() = 0;
 	virtual int getPayOff() = 0;
-	int getAge();
+	int getCost();
+	int getAge(); 
 	bool isAdult();
 	void setAdult();
 	void getOlder();
